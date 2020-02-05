@@ -1,30 +1,25 @@
 <?php
 
 
-function selectvilleun()
+function selectville()
 {
     require_once("connexion.php");
     $servername = "localhost";
     $username = "root";
     $password = "";
+    $conn = new PDO("mysql:host=$servername;dbname=corse", $username, $password);
+    $n = $conn->query('SELECT * FROM villes');
 
-  
-    $region = $_POST['region'];
-    
-        $conn = new PDO("mysql:host=$servername;dbname=corse", $username, $password);
-        $n = $conn->query("SELECT  nomvilles  FROM  villes WHERE iddep =".$region);
-       
+    $r = $n->fetchall();
+    echo json_encode($r);
+}
 
-    $r=$n->fetchall();
-    
-        for ($i=0; $i < count($r); $i++) { 
-            echo "<option>".$r[$i]['nomvilles']."</option>";
-        }
+selectville();
 
         
      
 
     
-}
+
 
 ?>
