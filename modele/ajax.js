@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+
     $.ajax({
         type: "POST",
         url: "../modele/selectdep.php",
@@ -8,22 +9,33 @@ $(document).ready(function() {
         success: function(retour) {
             var ret = JSON.parse(retour);
             for (var i = 0; i < ret.length; i++) {
-                $('#dep').append("<option value=" + ret[i].iddep + ">" + ret[i].nomdep + "</select>");
+                $('#dep').append("<option value=" + ret[i].iddep + ">" + ret[i].nomdep + "</option>");
+
             }
+
         }
-    })
 
+    });
 
-    $.ajax({
-        type: "POST",
-        url: "../modele/selectville.php",
-        //data: { region: region },
+    //$("#dep").change(function() {
 
-        success: function(retour) {
-            var retu = JSON.parse(retour);
-            for (var i = 0; i < retu.length; i++) {
-                $('#ville').append("<option value=" + retu[i].iddep + ">" + retu[i].nomvilles + "</select>");
+    var dep = $('#dep').val();
+
+    if (dep != 1 && dep != "--choisir un departement") {
+
+        $.ajax({
+            type: "POST",
+            url: "../modele/selectville.php",
+            //data: { region: region },
+            // $('#ville').empty();
+            success: function(retur) {
+                var retu = JSON.parse(retur);
+                for (var j = 0; j < retu.length; j++) {
+
+                    $('#ville').append("<option value=" + retu[j].iddep + ">" + retu[j].nomvilles + "</option>");
+                }
             }
-        }
-    })
+        })
+    }
+    //})
 });

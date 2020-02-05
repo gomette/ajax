@@ -35,7 +35,7 @@
 	</select>
 </form>
 
-<div id="resultat"></div>
+
 
 </body>
 
