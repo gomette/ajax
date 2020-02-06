@@ -7,7 +7,7 @@ function selectdep()
     $username = "root";
     $password = "";
     $conn = new PDO("mysql:host=$servername;dbname=corse", $username, $password);
-    $n = $conn->query('SELECT * FROM dep');
+    $n = $conn->query('SELECT iddep, nomdep FROM dep');
     $r = $n->fetchall();
     // var_dump($r);
     echo json_encode($r);
@@ -15,3 +15,5 @@ function selectdep()
 }
 
 selectdep();
+
+

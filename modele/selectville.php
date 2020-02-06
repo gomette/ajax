@@ -2,13 +2,16 @@
 
 require_once("connexion.php");
 
+
+
 function selectville()
 {
-    //  if(isset($_POST['dep']))
-    //  {
+     if(isset($_POST['id']))
+     {
 
-    //      $id = $_POST['dep'];
-    //  }
+         $id = $_POST['id'];
+        
+     }
 
     // var_dump($id);
     $servername = "localhost";
