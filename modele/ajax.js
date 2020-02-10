@@ -3,7 +3,6 @@ function dep() {
     $.ajax({
         type: "POST",
         url: "../modele/selectdep.php",
-        //data: { region: region },
 
         success: function(retour) {
             // alert(retour);
@@ -17,7 +16,6 @@ function dep() {
             }
         }
     })
-
 }
 
 function villes(iddep) {
@@ -26,7 +24,7 @@ function villes(iddep) {
         type: "POST",
         url: "../modele/selectville.php",
         data: "id=" + iddep,
-        //data: { region: region },
+
 
         success: function(retour) {
             // alert(retour);
@@ -45,10 +43,42 @@ function villes(iddep) {
 
 }
 
+function reset() {
+    $("#dep").val("");
+    $("#ville").hide();
+    $("#valider").hide();
+    $("#reset").hide();
+
+}
+
 $(document).ready(function() {
+
+reset();
+
+    $("#reset").click(function() {
+        reset();
+    });
+
     dep();
+
     $('#dep').change(function() {
+
+        var dep = $("#dep").val();
+
+        if(dep!=""){
+
         var ville = $('#dep').val();
+
         villes(ville);
+
+                    $("#ville").show();
+                    $("#valider").show();
+                    $("#reset").show();
+                    
+        }else{
+            reset();
+           
+        }
     })
+    
 });
